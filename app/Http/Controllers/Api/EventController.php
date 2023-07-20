@@ -21,6 +21,7 @@ class EventController extends Controller
   {
     // $this->middleware('auth:sanctum')->except(['index', 'show']);
     $this->authorizeResource(Event::class, 'event');
+    $this->middleware('throttle:60,1')->only(['store', 'destory', 'update']);
   }
 
     public function index()

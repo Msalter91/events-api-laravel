@@ -20,6 +20,7 @@ class AttendeeController extends Controller
   {
     // $this->middleware('auth:sanctum')->except(['index', 'show']);
     $this->authorizeResource(Attendee::class, 'attendee');
+    $this->middleware('throttle:60,1')->only(['store', 'destory']);
   }
 
     public function index(Event $event)
